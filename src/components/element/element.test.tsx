@@ -2,12 +2,12 @@ import { elementSeam, render, screen } from "@/test";
 import { Element } from ".";
 
 describe("ELEMENT COMPONENT", () => {
-  it("should display a feature element given its measurements", () => {
+  it("should display a feature element", () => {
     render(<Element {...elementSeam} />);
-    expect(screen.getByTestId("feature-element")).toBeDefined();
-    expect(screen.getByTestId("feature-element-header")).toBeDefined();
-    expect(screen.getByTestId("feature-element-body")).toBeDefined();
-    expect(screen.getAllByTestId("measurement").length).toBe(
+    expect(screen.getByTestId("feature-element")).toBeInTheDocument();
+    expect(screen.getByTestId("feature-element-header")).toBeInTheDocument();
+    expect(screen.getByTestId("feature-element-body")).toBeInTheDocument();
+    expect(screen.getAllByTestId("measurement")).toHaveLength(
       elementSeam.measurements.length
     );
   });

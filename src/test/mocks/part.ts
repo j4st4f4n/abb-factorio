@@ -1,4 +1,4 @@
-import { MeasurementI, ElementI } from "@/model";
+import { MeasurementI, ElementI, FeatureI, FeatureStatus } from "@/model";
 
 export const measurementX: MeasurementI = {
   name: "x",
@@ -25,4 +25,11 @@ export const elementSeam: ElementI = {
   id: "123",
   name: "Seam",
   measurements: [measurementX, measurementY, measurementZ, measurementDiameter],
+};
+
+export const featureA: FeatureI = {
+  id: "123",
+  name: "feature test",
+  status: FeatureStatus.WARNING,
+  elements: [elementSeam],
 };
