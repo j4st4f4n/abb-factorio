@@ -1,4 +1,10 @@
-import { MeasurementI, ElementI, FeatureI, FeatureStatus } from "@/model";
+import {
+  MeasurementI,
+  ElementI,
+  FeatureI,
+  FeatureStatus,
+  PartI,
+} from "@/model";
 
 export const measurementX: MeasurementI = {
   name: "x",
@@ -32,4 +38,10 @@ export const featureA: FeatureI = {
   name: "feature test",
   status: FeatureStatus.WARNING,
   elements: [elementSeam],
+};
+
+export const partA: PartI = {
+  id: "123",
+  name: "Part A",
+  features: [featureA],
 };

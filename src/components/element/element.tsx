@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { ElementI, MeasurementI } from "@/model";
 import { Measurement } from "@/components";
+
 import ElementStyles from "./element.module.css";
 
 export const Element = ({ measurements }: ElementI) => {
