@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { elementSeam } from "./test";
+import { Element } from "./components";
 
 interface Post {
   userId: number;
@@ -32,6 +34,7 @@ export const App = () => {
           </article>
         ))}
       <button onClick={() => fetchPosts()}>Fetch Posts</button>
+      <Element {...elementSeam} />
     </main>
   );
 };

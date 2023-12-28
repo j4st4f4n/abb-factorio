@@ -1,0 +1,30 @@
+.featuredColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 1rem 1rem 0 1rem;
+  .measurementsHeader {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+  }
+  .measurementsData {
+    display: flex;
+    flex-direction: column;
+  }
+  .measurementControl {
+    flex: 1;
+    text-align: left;
+  }
+  .measurementDev {
+    flex: 1;
+    text-align: center;
+  }
+  .measurementDevOutTotal {
+    flex: 1;
+    text-align: center;
+  }
+  .measurementStatus {
+    flex-basis: 5%;
+  }
+}

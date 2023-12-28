@@ -1,9 +1,11 @@
-import { MeasurementI, FeatureStatus } from "../../model/part.types";
+import { FeatureStatus, MeasurementI } from "@/model";
+import { theme } from "@/shared";
+
 import CheckSvg from "../../icons/check-circle.svg?react";
 import WarningSvg from "../../icons/exclamation-circle.svg?react";
 import DangerSvg from "../../icons/x-circle.svg?react";
-import { theme } from "../../shared/theme";
-import MeasurementStyles from "./mesaurement.module.css";
+
+import MeasurementStyles from "./measurement.module.css";
 
 export const Measurement = ({ name, dev, devOutTotal }: MeasurementI) => {
   const handleStatus = () => {
