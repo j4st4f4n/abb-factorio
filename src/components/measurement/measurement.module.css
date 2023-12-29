@@ -1,12 +1,13 @@
-.mesurement {
+.measurement {
   display: flex;
   flex-direction: row;
   margin: 0.75rem 0;
-  .control {
+  .name {
     text-align: left;
     flex: 1;
   }
-  .dev {
+  .dev,
+  .devOutTotal {
     text-align: center;
     flex: 1;
   }

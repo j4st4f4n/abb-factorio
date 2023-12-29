@@ -1,37 +1,32 @@
-import { useState } from "react";
+import { io } from "socket.io-client";
+import { useEffect, useState } from "react";
 
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Part } from "@/components";
+import { PartI } from "@/model";
+
+const serverURL = import.meta.env.VITE_SERVER_URL || "http://localhost:8000";
+const socket = io(serverURL);
 
 export const App = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [activePart, setActivePart] = useState<PartI | null>(null);
 
-  const fetchPosts = async () => {
-    setIsLoading(true);
-    await fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(posts => setPosts(posts as Post[]));
+  useEffect(() => {
+    socket.on("new-parts", (data: PartI) => {
+      console.log(data);
+      setActivePart(data);
+    });
 
-    setIsLoading(false);
-  };
+    fetch(`${serverURL}/part`)
+      .then(data => data.json())
+      .then(data => {
+        setActivePart(data);
+      });
 
-  return (
-    <main className="App">
-      <h1>MSW Testing Library Example</h1>
-      {isLoading && <span aria-label="loading">Loading...</span>}
-      {posts.length > 0 &&
-        posts.map(post => (
-          <article key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-          </article>
-        ))}
-      <button onClick={() => fetchPosts()}>Fetch Posts</button>
-    </main>
-  );
+    return () => {
+      socket.off("connection");
+      socket.off("new-parts");
+    };
+  }, []);
+
+  return activePart ? <Part {...activePart} /> : <>Loading...</>;
 };
