@@ -20,6 +20,7 @@ npm dev
 
 ## TODO'S
 
+- Test websocket.io and the api /part request
 - Generate correct data models: since no real example data was provided, final data format might be different.
 - Backend needs a more realistic implementation.
 - The way we show the part features can be improved (styles)

@@ -27,16 +27,15 @@ export const generateNewMockPart = () => {
 
 export const generateNewFeature = () => {
   const randNum = randomIntFromInterval(0, 2);
+  let newStatus = FeatureStatus.DANGER;
+
+  if (randNum === 0) newStatus = FeatureStatus.SUCCESS;
+  if (randNum === 1) newStatus = FeatureStatus.WARNING;
 
   const newFeature: FeatureI = {
     id: uuidv4(),
     name: `Feature ${randomString()}`,
-    status:
-      randNum === 0
-        ? FeatureStatus.SUCCESS
-        : randNum === 1
-        ? FeatureStatus.WARNING
-        : FeatureStatus.DANGER,
+    status: newStatus,
     elements: generateNewElements(),
   };
   return newFeature;
