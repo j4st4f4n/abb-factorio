@@ -11,22 +11,20 @@ export const App = () => {
   const [activePart, setActivePart] = useState<PartI | null>(null);
 
   useEffect(() => {
-    socket.on("new-parts", (data: PartI) => {
+    socket.on("new-part", (data: PartI) => {
       console.log(data);
       setActivePart(data);
     });
 
-    fetch(`${serverURL}/part`)
-      .then(data => data.json())
-      .then(data => {
-        setActivePart(data);
-      });
-
     return () => {
       socket.off("connection");
-      socket.off("new-parts");
+      socket.off("new-part");
     };
   }, []);
 
-  return activePart ? <Part {...activePart} /> : <>Loading...</>;
+  return activePart ? (
+    <Part {...activePart} />
+  ) : (
+    <div data-testid="loading">Loading...</div>
+  );
 };

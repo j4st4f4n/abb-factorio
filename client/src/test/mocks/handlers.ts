@@ -24,7 +24,16 @@ export const posts = [
 
 // Define handlers that catch the corresponding requests and returns the mock data.
 export const handlers = [
-  http.get("https://jsonplaceholder.typicode.com/posts", () => {
+  http.get("http://localhost:8080/socket.io/", ({ request, params }) => {
+    console.log("GET:");
+    console.log("request.body:", request.body);
+    console.log("params:", params);
+    return HttpResponse.json(posts, { status: 200 });
+  }),
+  http.post("http://localhost:8080/socket.io/", ({ request, params }) => {
+    console.log("POST:");
+    console.log("request.body:", request.body);
+    console.log("params:", params);
     return HttpResponse.json(posts, { status: 200 });
   }),
 ];
