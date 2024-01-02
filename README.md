@@ -7,6 +7,7 @@
 ```bash
 cd server
 npm i
+npm run build
 npm start
 ```
 
@@ -15,7 +16,7 @@ npm start
 ```bash
 cd client
 npm i
-npm dev
+npm run dev
 ```
 
 ## TODO'S

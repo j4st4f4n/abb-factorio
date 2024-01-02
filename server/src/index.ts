@@ -11,19 +11,21 @@ const app: Express = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
+setInterval(() => {
+  const newPart = generateNewMockPart();
+  console.log("[newPart] ", newPart.id);
+  io.emit("new-part", newPart);
+}, 5000);
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET");
   next();
 });
 
-app.get("/part", (req: Request, res: Response) => {
-  setInterval(() => {
-    const newPart = generateNewMockPart();
-    console.log("[newPart] ", newPart.id);
-    io.emit("new-parts", newPart);
-  }, 5000);
-  res.send(generateNewMockPart());
+app.post("/part", (req: Request, res: Response) => {
+  io.emit("new-part", generateNewMockPart());
+  res.send();
 });
 
 io.on("connection", socket => {
